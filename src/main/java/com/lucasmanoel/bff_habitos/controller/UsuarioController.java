@@ -2,6 +2,7 @@ package com.lucasmanoel.bff_habitos.controller;
 
 import com.lucasmanoel.bff_habitos.business.UsuarioService;
 import com.lucasmanoel.bff_habitos.business.in.UsuarioDTORequest;
+import com.lucasmanoel.bff_habitos.business.in.UsuarioLoginRequest;
 import com.lucasmanoel.bff_habitos.business.out.UsuarioDTOResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -54,7 +55,7 @@ public class UsuarioController {
     @ApiResponse(responseCode = "200", description = "Usuario logado com sucesso")
     @ApiResponse(responseCode = "401", description = "Dados inválidos")
     @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
-    public ResponseEntity<String> login(@RequestBody UsuarioDTORequest dto){
+    public ResponseEntity<String> login(@RequestBody UsuarioLoginRequest dto){
         return ResponseEntity.ok(usuarioService.login(dto));
     }
 
