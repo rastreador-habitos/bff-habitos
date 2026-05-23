@@ -2,7 +2,7 @@ package com.lucasmanoel.bff_habitos.infrastructure.client.config;
 
 
 import com.lucasmanoel.bff_habitos.infrastructure.exceptions.BusinessException;
-import com.lucasmanoel.bff_habitos.infrastructure.exceptions.ConflictExeception;
+import com.lucasmanoel.bff_habitos.infrastructure.exceptions.ConflictException;
 import com.lucasmanoel.bff_habitos.infrastructure.exceptions.ResourceNotFoundException;
 import com.lucasmanoel.bff_habitos.infrastructure.exceptions.UnauthorizedException;
 import feign.Response;
@@ -23,7 +23,7 @@ public class FeignError implements ErrorDecoder {
             case 401 -> new UnauthorizedException(mensagem);
             case 403 -> new UnauthorizedException(mensagem);
             case 404 -> new ResourceNotFoundException(mensagem);
-            case 409 -> new ConflictExeception(mensagem);
+            case 409 -> new ConflictException(mensagem);
             default  -> new BusinessException(mensagem);
         };
     }

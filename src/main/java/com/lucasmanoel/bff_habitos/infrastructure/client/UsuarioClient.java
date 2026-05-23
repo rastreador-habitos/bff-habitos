@@ -1,6 +1,7 @@
 package com.lucasmanoel.bff_habitos.infrastructure.client;
 
 import com.lucasmanoel.bff_habitos.business.in.UsuarioDTORequest;
+import com.lucasmanoel.bff_habitos.business.in.UsuarioLoginRequest;
 import com.lucasmanoel.bff_habitos.business.out.UsuarioDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public interface UsuarioClient {
     UsuarioDTOResponse buscaUsuarioPorEmail(@RequestHeader("Authorization") String token, @RequestParam String email);
 
     @PostMapping("/login")
-    String login (@RequestBody UsuarioDTORequest dto);
+    String login (@RequestBody UsuarioLoginRequest dto);
 
     @DeleteMapping("/{email}")
     void deletaUsuario(@RequestHeader("Authorization") String token, @PathVariable String email);

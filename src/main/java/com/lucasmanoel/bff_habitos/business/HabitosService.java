@@ -6,10 +6,6 @@ import com.lucasmanoel.bff_habitos.business.out.HabitosDTOResponse;
 import com.lucasmanoel.bff_habitos.infrastructure.client.HabitoClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,32 +15,32 @@ public class HabitosService {
 
     private final HabitoClient client;
 
-    public HabitosDTOResponse cadastraHabito(@RequestHeader("Authorization") String token, @RequestBody HabitosDTORequest dto){
+    public HabitosDTOResponse cadastraHabito(String token, HabitosDTORequest dto){
         return client.cadastraHabito(token, dto);
     }
 
-    public void alterarStatusHabito(@RequestHeader("Authorization") String token, @PathVariable String id, @RequestParam boolean ativo){
+    public void alterarStatusHabito(String token, String id, boolean ativo){
 
         client.alterarStatusHabito(token, id, ativo);
     }
 
-    public void deletaHabito(@RequestHeader("Authorization") String token, @PathVariable String id){
+    public void deletaHabito(String token, String id){
         client.deletaHabito(token, id);
     }
 
-    public HabitosDTOResponse alteraHabito(@RequestHeader("Authorization") String token, @RequestBody HabitosDTORequest dto, @PathVariable String id){
+    public HabitosDTOResponse alteraHabito(String token, HabitosDTORequest dto, String id){
         return client.alteraHabito(token, dto, id);
     }
 
-    public Integer efetuarCheckin(@RequestHeader("Authorization") String token, @RequestParam String id){
+    public Integer efetuarCheckin(String token, String id){
         return client.efetuarCheckin(token, id);
     }
 
-    public List<CheckinDTOResponse> historicoCheckin(@RequestHeader("Authorization") String token, @RequestParam String habitoId){
+    public List<CheckinDTOResponse> historicoCheckin(String token, String habitoId){
         return client.historicoCheckin(token, habitoId);
     }
 
-    public Integer calcularStreak(@RequestHeader("Authorization") String token, @RequestParam String habitoId){
+    public Integer calcularStreak(String token, String habitoId){
         return client.calcularStreak(token, habitoId);
     }
 }
