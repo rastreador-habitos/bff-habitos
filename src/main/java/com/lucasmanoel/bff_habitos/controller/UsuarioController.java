@@ -41,7 +41,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    @Operation(summary = "Busca usuario", description = "Localiza usuario buscando pelo email")
+    @Operation(summary = "Busca usuario", description = "Localiza usuario buscando pelo habitosID")
     @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso")
     @ApiResponse(responseCode = "400", description = "Dados inválidos")
     @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
@@ -59,7 +59,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.login(dto));
     }
 
-    @DeleteMapping("/{email}")
+    @DeleteMapping("/{habitosID}")
     @Operation(summary = "Deleta usuário", description = "Deleta usuário do sistema")
     @ApiResponse(responseCode = "200", description = "Usuario deletado com sucesso")
     @ApiResponse(responseCode = "403", description = "Dados inválidos")

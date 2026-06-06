@@ -3,6 +3,7 @@ package com.lucasmanoel.bff_habitos.controller;
 import com.lucasmanoel.bff_habitos.business.HabitosService;
 import com.lucasmanoel.bff_habitos.business.in.HabitosDTORequest;
 import com.lucasmanoel.bff_habitos.business.out.CheckinDTOResponse;
+import com.lucasmanoel.bff_habitos.business.out.HabitosDTORecordResponse;
 import com.lucasmanoel.bff_habitos.business.out.HabitosDTOResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -97,5 +98,15 @@ public class HabitosController {
     @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     public ResponseEntity<Integer> calcularStreak(@RequestHeader("Authorization") String token, @RequestParam String habitoId){
         return ResponseEntity.ok(habitosService.calcularStreak(token, habitoId));
+    }
+
+    @GetMapping("/listar")
+    @Operation(summary = "Lista Habitos", description = "Busca por lista de habitos pelo habitosID")
+    @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos")
+    @ApiResponse(responseCode = "401", description = "Usuário não autenticado")
+    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    public ResponseEntity<List<HabitosDTORecordResponse>> buscaHabitosPorEmail(@RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(habitosService.buscaHabitosPorEmail(token));
     }
 }

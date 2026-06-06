@@ -2,6 +2,7 @@ package com.lucasmanoel.bff_habitos.business;
 
 import com.lucasmanoel.bff_habitos.business.in.HabitosDTORequest;
 import com.lucasmanoel.bff_habitos.business.out.CheckinDTOResponse;
+import com.lucasmanoel.bff_habitos.business.out.HabitosDTORecordResponse;
 import com.lucasmanoel.bff_habitos.business.out.HabitosDTOResponse;
 import com.lucasmanoel.bff_habitos.infrastructure.client.HabitoClient;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,9 @@ public class HabitosService {
 
     public Integer calcularStreak(String token, String habitoId){
         return client.calcularStreak(token, habitoId);
+    }
+
+    public List<HabitosDTORecordResponse> buscaHabitosPorEmail(String token){
+        return client.buscaHabitosPorEmail(token);
     }
 }

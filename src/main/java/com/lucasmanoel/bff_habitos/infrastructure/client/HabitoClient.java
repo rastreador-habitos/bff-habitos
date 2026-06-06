@@ -2,6 +2,7 @@ package com.lucasmanoel.bff_habitos.infrastructure.client;
 
 import com.lucasmanoel.bff_habitos.business.in.HabitosDTORequest;
 import com.lucasmanoel.bff_habitos.business.out.CheckinDTOResponse;
+import com.lucasmanoel.bff_habitos.business.out.HabitosDTORecordResponse;
 import com.lucasmanoel.bff_habitos.business.out.HabitosDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -31,4 +32,7 @@ public interface HabitoClient {
 
     @GetMapping("/streak")
     Integer calcularStreak(@RequestHeader("Authorization") String token, @RequestParam String habitoId);
+
+    @GetMapping("/listar")
+    List<HabitosDTORecordResponse> buscaHabitosPorEmail(@RequestHeader("Authorization") String token);
 }
