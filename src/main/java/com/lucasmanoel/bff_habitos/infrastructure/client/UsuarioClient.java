@@ -21,7 +21,7 @@ public interface UsuarioClient {
     @PostMapping("/login")
     String login (@RequestBody UsuarioLoginRequest dto);
 
-    @DeleteMapping("/{email}")
+    @DeleteMapping("/{habitosID}")
     void deletaUsuario(@RequestHeader("Authorization") String token, @PathVariable String email);
 
 
