@@ -1,8 +1,12 @@
 package com.lucasmanoel.bff_habitos.infrastructure.client;
 
-import com.lucasmanoel.bff_habitos.business.in.UsuarioDTORequest;
+import com.lucasmanoel.bff_habitos.business.in.RegisterUserRequest;
 import com.lucasmanoel.bff_habitos.business.in.UsuarioLoginRequest;
-import com.lucasmanoel.bff_habitos.business.out.UsuarioDTOResponse;
+import com.lucasmanoel.bff_habitos.business.in.UsuarioRequest;
+import com.lucasmanoel.bff_habitos.business.out.LoginResponse;
+import com.lucasmanoel.bff_habitos.business.out.RegisterUserResponse;
+import com.lucasmanoel.bff_habitos.business.out.UsuarioResponse;
+import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public interface UsuarioClient {
 
     @PostMapping
-    UsuarioDTOResponse cadastraUsuario(@RequestBody UsuarioDTORequest dto);
+    RegisterUserResponse cadastraUsuario(@RequestBody RegisterUserRequest request);
 
     @PutMapping
-    UsuarioDTOResponse alteraUsuario(@RequestHeader("Authorization") String token, @RequestBody UsuarioDTORequest dto);
+    UsuarioResponse alteraUsuario(@RequestHeader("Authorization") String token,@Valid @RequestBody UsuarioRequest request);
 
     @GetMapping
-    UsuarioDTOResponse buscaUsuarioPorEmail(@RequestHeader("Authorization") String token, @RequestParam String email);
+    UsuarioResponse buscaUsuarioPorEmail(@RequestHeader("Authorization") String token, @RequestParam String email);
 
     @PostMapping("/login")
-    String login (@RequestBody UsuarioLoginRequest dto);
+    LoginResponse login (@RequestBody UsuarioLoginRequest request);
 
     @DeleteMapping("/{habitosID}")
     void deletaUsuario(@RequestHeader("Authorization") String token, @PathVariable String email);
